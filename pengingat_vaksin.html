@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengingat Vaksinasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css"> <!-- Link ke file CSS eksternal -->
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <a href="Home.html" class="btn btn-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </a>
+                    <span class="ms-2 large-text">Pengingat Vaksinasi</span>
+                </div>
+               
+            </div>
+        </div>
+       
+        
+        <div class="row mt-3">
+            <div class="col-12 d-flex align-items-center">
+                <img src="foto.jpg" alt="Aerina Mikoris" class="rounded-circle me-2" style="width: 50px; height: 50px;">
+                <div>
+                    <h5 class="m-0">Aerina Mikoris</h5>
+                    <p class="m-0">Perempuan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+            <div class="row mt-4">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="btn-group me-4 gap-4 overflow-auto" id="ageSelection" style="white-space: nowrap;">
+                        <a href="#lahir" class="nav-item">Lahir</a>
+                        <a href="#dua-bulan" class="nav-item">2 Bulan</a>
+                        <a href="#tiga-bulan" class="nav-item">3 Bulan</a>
+                        <a href="#empat-bulan" class="nav-item">4 Bulan</a>
+                        <a href="#enam-bulan" class="nav-item">6 Bulan</a>
+                        <a href="#tujuh-bulan" class="nav-item">7 Bulan</a>
+                        <a href="#sembilan-bulan" class="nav-item">9 Bulan</a>
+                        <a href="#duabelas-bulan" class="nav-item">12 Bulan</a>
+                        <a href="#empatbelas-bulan" class="nav-item">14 Bulan</a>
+                        <a href="#limabelas-bulan" class="nav-item">15 Bulan</a>
+                        <a href="#delapanbelas-bulan" class="nav-item">18 Bulan</a>
+                        <a href="#sembilanbelas-bulan" class="nav-item">19 Bulan</a>
+                        <a href="#duaempat-bulan" class="nav-item">24 Bulan</a>
+                        <a href="#tigasatu-bulan" class="nav-item">31 Bulan</a>
+                        <a href="#tiga-tahun" class="nav-item">3 Tahun</a>
+                        <a href="#empat-tahun" class="nav-item">4 Tahun</a>
+</div>
+</div>
+</div>    
+</div>
+</div>
+<div class="row mt-4">
+    <div class="col-15">
+        <div class="card">
+            <div id="lahir">
+            <div class="card-header">   
+    <h4 class="card-title">Lahir</h4>
+</div>
+<div class="card-body">
+    <div class="accordion" id="accordionLahir">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingHepatitis0">
+                <div class="vaccine-item" onclick="showPopup('Hepatitis B 0', '14 April 2024', this)">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHepatitis0" aria-expanded="true" aria-controls="collapseHepatitis0">
+                        Hepatitis B O
+                    </div>
+                </button>
+            </h2>
+            <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                <div class="accordion-body">
+                    Mencegah virus Hepatitis B yang dapat menyerang dan merusak hati, bila berlangsung sampai dewasa dapat menyebabkan kanker hati.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="accordion" id="accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <div class="vaccine-item" onclick="showPopup('Polio 0', '20 April 2024',this)"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Polio O
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Mencegah virus polio
+                </div>
+            </div>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <div class="vaccine-item" onclick="showPopup('BCG', '25 April 2024',this)">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        BCG
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Mencegah Tuberkulosis (TB) yang berat
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    </div>
+    </div>
+        
+<div class="row mt-4">
+<div class="col-15">     
+<div class="card">
+            <div id="dua-bulan">
+            <div class="card-header">
+                <h4 class="card-title">2 Bulan</h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <div class="vaccine-item" onclick="showPopup('Hepatitis B 1', '14 Juni 2024',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Hepatitis B 1
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Mencegah virus Hepatitis B yang dapat menyerang dan merusak hati, bila berlangsung sampai dewasa dapat meyebabkan kanker hati.
+                            </div>
+                        </div>
+                    </div>
+                
+                
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('Polio 1', '20 Juni 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Polio 1
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah virus polio
+                        </div>
+                    </div>
+                </div>
+
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('DPT 1', '25 Juni 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            DPT 1
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah infeksi difteri yang menyebabkan penyumbatan jalan nafas
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('Hib 1', '29 Juni 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Hib 1
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah infeksi virus Hib yang menyebabkan meningitis(infeksi/ radang selaput otak)dan pneumonia (radang paru)
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('PCV 1', '10 Agustus 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            PCV 1
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah penyakit pneumonia (radang paru) akibat infeksi pneumokokus
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup(' Rotavirus 1 RV1/RV5', '20 Agustus 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Rotavirus 1 RV1/RV5
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah diare akibar rotavirus
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="tiga-bulan">
+            <div class="card-header">
+                <h4 class="card-title">3 Bulan </h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <div class="vaccine-item" onclick="showPopup('Polio 2', '10 September 2024',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                                Polio 2
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingTrhee" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Mencegah infeksi virus polio
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('Hepatistis B 2', '18 September 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Hepatitis B 2
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah virus hepatitis B
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('DTP 2', '26 September 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            DTP 2
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah infeksi difteri yang menyebabkan penyumbatan jalan nafas
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('Hib 2', '30 September 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Hib 2
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah infeksi virus Hib yang menyebabkan meningitis (infeksi/radang selaput otak) dan pneumonia (radang paru)
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('PCV (Kemenkes RI)', '12 Oktober 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            PCV (Kemenkes RI)
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah penyakit pneumonia (radang paru) akibat infeksi pneumokokus
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="empat-bulan">
+            <div class="card-header">
+                <h4 class="card-title">4 Bulan </h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <div class="vaccine-item" onclick="showPopup('Hepatistis B 3', '19 Oktober 2024',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Hepatitis B 3
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Mencegah virus Hepatitis B yang dapat menyerang dan merusak hati, bila sampai dewasa menyebabkan kanker hati
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('polio 3', '27 Oktober 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Polio 3
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah infeksi virus polio
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('DTP 3', '10 November 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            DTP 3
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah infeksi difteri yang menyebabkan penyumbatan jalan nafas
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <div class="vaccine-item" onclick="showPopup('Hib 3', '18 November 2024',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Hib 3
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah infeksi virus Hib yang menyebabkan meningitis (infeksi/radang selaput otak) dan pneumonia (radang paru)
+                        </div>
+                    </div>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <div class="vaccine-item" onclick="showPopup('PCV 2', '27 November 2024',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                PCV 2
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Mencegah penyakit pneumonia (radang paru) akibat infeksi pneumokokus
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <div class="vaccine-item" onclick="showPopup('Rotavirus 2 RV1/RV5', '1 Desember 2024',this)">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Rotavirus 2 RV1/RV5
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Mencegah diare akibar rotavirus
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="enam-bulan">
+            <div class="card-header">
+                <h4 class="card-title">6 Bulan </h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <div class="vaccine-item" onclick="showPopup('PCV 3', '10 Desember 2024',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                PCV 3
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Mencegah penyakit pneumonia (radang paru) akibat infeksi pneumokokus
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <div class="vaccine-item" onclick="showPopup('Influenza', '20 Desember 2024',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Influenza
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Mencegah sakit berat akibat virus flu/ influenza
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <div class="vaccine-item" onclick="showPopup('Rotavirus 3 RV1/RV5', '30 Desember 2024',this)">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Rotavirus 3 RV1/RV5
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Mencegah diare akibar rotavirus
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+                                                                                                                                                                                                                                                                                                            
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="tujuh-bulan">
+            <div class="card-header">
+                <h4 class="card-title">7 Bulan </h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <div class="vaccine-item" onclick="showPopup('Influenza', '1 Januari 2025',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Influenza
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Mencegah sakit berat akibat virus flue
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card">
+                    <div id="sembilan-bulan">
+                    <div class="card-header">
+                        <h4 class="card-title">9 Bulan</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="accordionLahir">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingHepatitis0">
+                                    <div class="vaccine-item" onclick="showPopup('Japanese encephalitis 1', '11 Junuari 2025',this)">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                        Japanese Encephalitis 1
+                                    </button>
+                                </h2>
+                                <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                                    <div class="accordion-body">
+                                        Mencegah penyakit radang/infeksi jaringan otak (ensefalitis) akibat virus Japanese Encephalitis (JE)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                                                                                                                                                                                                                                                                
+                    <div class="accordion" id="accordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <div class="vaccine-item" onclick="showPopup('MR', '20 Junuari 2025',this)">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    MR
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Mencegah penyakit campak (Measles) yang dapat mengakibatkan komplikasi radang paru dan radang otak 
+                                </div>
+                            </div>
+                        </div>
+                                                                                                                                                                                                                                                                                                
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <div class="vaccine-item" onclick="showPopup('Polio (IPV 2 Kemenkes RI)', '29 Junuari 2025',this)">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Polio (IPV 2 Kemenkes RI)
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Mencegah inveksi virus polio
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="duabelas-bulan">
+            <div class="card-header">
+                <h4 class="card-title">12 Bulan</h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionLahir">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHepatitis0">
+                            <div class="vaccine-item" onclick="showPopup('PCV 4', '11 Februari 2025',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                PCV 4
+                            </button>
+                        </h2>
+                        <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                            <div class="accordion-body">
+                                Mencegah penyakit pneumonia (radang paru) akibat infeksi pneumokokus
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion" id="accordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <div class="vaccine-item" onclick="showPopup('Varisela 1', '19 Februari 2025',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Varisela 1
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah penyakit cacar air (varisela) akibat infeksi varus Varicella Zoster
+                        </div>
+                    </div>
+                </div>
+                                                                                                                                                                                                                                                                                                            
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <div class="vaccine-item" onclick="showPopup('Hepatistis A1', '27 Februari 2025',this)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Hepatitis A1
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Mencegah virus Hepatitis B yang dapat menyerang dan merusak hati 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="empatbelas-bulan">
+            <div class="card-header">
+                <h4 class="card-title">14 Bulan</h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionLahir">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHepatitis0">
+                            <div class="vaccine-item" onclick="showPopup('Varisela 2', '11 Maret 2025',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                Varisela 2
+                            </button>
+                        </h2>
+                        <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                            <div class="accordion-body">
+                                Mencegah penyakit cacar air (varisela) akibat infeksi virus Varicella Zoster
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card">
+                    <div id="limabelas-bulan">
+                    <div class="card-header">
+                        <h4 class="card-title">15 Bulan</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="accordionLahir">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingHepatitis0">
+                                    <div class="vaccine-item" onclick="showPopup('MR/MMR', '16 Maret 2025',this)">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                        MR/MMR
+                                    </button>
+                                </h2>
+                                <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                                    <div class="accordion-body">
+                                        Mencegah penyakit campak (Measles) yang dapat mengakibatkan komplikasi radang paru dan radang otak, gondongan
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="delapanbelas-bulan">
+            <div class="card-header">
+                <h4 class="card-title">18 Bulan</h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionLahir">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHepatitis0">
+                            <div class="vaccine-item" onclick="showPopup('Hepatistis B 4', '25 Maret 2025',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                Hepatitis B 4
+                            </button>
+                        </h2>
+                        <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                            <div class="accordion-body">
+                                Mencegah virus Hepatitis B yang dapat menyerang dan merusak hati, bila berlangsung sampai dewasa dapat meyebabkan kanker hati.
+                            </div>
+                       </div>
+                    </div>
+                </div>
+<div class="accordion" id="accordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <div class="vaccine-item" onclick="showPopup('Polio 4', '11 April 2025',this)">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Polio 4
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+            Mencegah virus polio
+            </div>
+        </div>
+    </div>
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <div class="vaccine-item" onclick="showPopup('HDTP 4', '27 April 2025',this)">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        DTP 4
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Mencegah infeksi difteri yang menyebabkan penyumbatan jalan nafas
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                                                                                                                                                                                                                                                                                                                                                                     
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <div class="vaccine-item" onclick="showPopup('Hib 4', '11 Mei 2025',this)">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Hib 4
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Mencegah infeksi virus Hib yang menyebabkan meningitis (infeksi/radang selaput otak) dan pneumonia (radang paru)
+                </div>
+            </div>
+        </div>
+    </div>                                                                                                                                                                                                                                                                                                                                                               
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <div class="vaccine-item" onclick="showPopup('Hepatistis A 2', '17 Juni 2025',this)">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Hepatitis A 2
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                Mencegah penyakit hepatitis (radang hati) akibat infeksi virus Hepatitis A
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="sembilanbelas-bulan">
+            <div class="card-header">
+                <h4 class="card-title">19 Bulan</h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionLahir">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHepatitis0">
+                            <div class="vaccine-item" onclick="showPopup('Influenza', '29 Juni 2025',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                Influenza
+                            </button>
+                        </h2>
+                        <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                            <div class="accordion-body">
+                                Mencegah sakit berat akibat virus flu/influenza
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>                                                                                                                                                                                                                                                                                                                                                                                   
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="duaempat-bulan">
+            <div class="card-header">
+                <h4 class="card-title">24 Bulan</h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionLahir">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHepatitis0">
+                            <div class="vaccine-item" onclick="showPopup('Tifoid', '11 Agustus 2025',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                Tifoid
+                            </button>
+                        </h2>
+                        <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                            <div class="accordion-body">
+                                Mencegah penyakit demam tifoid akibat infeksi bakteri Salmonella Typhi
+                            </div>
+                        </div>
+                    </div>
+                </div>                                                                                                                                                                                                                                                                                                                                                                                                      
+<div class="accordion" id="accordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <div class="vaccine-item" onclick="showPopup('Japanese encephalitis 2', '16 Agustus 2025',this)">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Japanase Encephalitis 2
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                Mencegah penyakit radang/infeksi jaringan otak
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>                                                                                                                                                                                                                                                                                                                                                                                                        
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="tigasatu-bulan">
+            <div class="card-header">
+                <h4 class="card-title">31 Bulan</h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionLahir">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHepatitis0">
+                            <div class="vaccine-item" onclick="showPopup('Influenza', '26 Agustus 2025',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                Influenza
+                            </button>
+                        </h2>
+                        <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                            <div class="accordion-body">
+                                Mencegah sakit berat akibat virus flu/influenza
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div> 
+</div> 
+</div>                                                                                                                                                                                                                                                                                                                                                                                                     
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="tiga-tahun">
+            <div class="card-header">
+                <h4 class="card-title">3 Tahun</h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionLahir">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHepatitis0">
+                            <div class="vaccine-item" onclick="showPopup('Influenza', '11 September 2025',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                Influenza
+                            </button>
+                        </h2>
+                        <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                            <div class="accordion-body">
+                                Mencegah sakit berat akibat virus flu/influenza
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>                                                                                                                                                                                                                                                                                                                                                                                                     
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div id="empat-tahun">
+            <div class="card-header">
+                <h4 class="card-title">4 Tahun</h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionLahir">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHepatitis0">
+                            <div class="vaccine-item" onclick="showPopup('Influenza', '24 September 2025',this)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                Influenza
+                            </button>
+                        </h2>
+                        <div id="collapseHepatitis0" class="accordion-collapse collapse show" aria-labelledby="headingHepatitis0" data-bs-parent="#accordionLahir">
+                            <div class="accordion-body">
+                                Mencegah sakit berat akibat virus flu/influenza
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    </div>                                                                                                                                                                                                                                                                                                                                                                                           
+  
+    <div class="background-overlay" id="popup-overlay">
+        <div class="popup">
+          <div class="popup-header">
+            <input type="checkbox" id="vaccine-check" checked>
+            <label id="popup-title" for="vaccine-check">Vaksin</label>
+          </div>
+          <div class="popup-content">
+            <p><strong>Tanggal Vaksin</strong></p>
+            <input type="teks" id="popup-date">
+          </div>
+          <button class="btn-vaksin" onclick="saveDate()">Sudah Vaksin</button>
+        </div>
+      </div>
+
+
+      <script>
+    
+        function showPopup(title, date, element) {
+            currentElement = element;
+            document.getElementById('popup-title').textContent = title;
+            document.getElementById('popup-overlay').style.display = 'flex';
+        }
+    
+        function saveDate() {
+            const date = document.getElementById('popup-date').value;
+            if (currentElement) {
+                currentElement.classList.add('completed'); 
+            }
+            document.getElementById('popup-overlay').style.display = 'none';
+        }
+    </script>
+    </body>
+    </html>
+    
+                                                                                                                                                                                                                                                                                                                                                                                     
+
+                                                                                                                                                                                                                                                                                                                                                                                                            
+
+                                                                                                                                                                                                                                                                                                                                                                                                                               
+                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                       
+                                                                                                                                                                                                                                                                                                                                                                        
+
+                                                                                                                                                                                                                                                                                                                       
+
+                                                                                                                                                                                                                                                                                                           
+                                                        
+                                                                
+                                                                                            

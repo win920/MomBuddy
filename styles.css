@@ -1,0 +1,273 @@
+body {
+    background-color: #0e0f10;
+}
+
+.btn-group {
+    overflow-x: auto;
+}
+
+.accordion-button {
+    cursor: pointer;
+}
+
+#ageSelection {
+    max-width: 100%; /* Membatasi lebar kontainer */
+    overflow-x: auto auto; /* Mengaktifkan scroll horizontal */
+}
+
+.btn-group {
+    display: inline-flex; /* Menjaga tombol dalam satu baris */
+}
+
+.large-text {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: rgb(11, 11, 11); /* Tambahan untuk pengecekan */
+}
+
+.card-title {
+    text-align: center;
+    
+}
+
+.card {
+    width: 100%; /* Atur lebar menjadi 100% dari kolom */
+    max-width: 1200px; /* Menetapkan lebar maksimum untuk kartu */
+    margin: auto auto; /* Memberikan margin vertikal dan tengah secara horizontal */
+}
+
+.card-body {
+    background-color: #e0f7fa; /* Warna latar belakang untuk card-body */
+}
+
+body {
+    background-color: #f6f7f8;
+}
+
+.btn-custom {
+    background-color: #e0f7fa ; /* Ganti dengan warna yang diinginkan */
+    color: #060404 ; /* Warna teks dalam tombol */
+}
+
+.btn-custom:hover {
+    background-color: #b2ebf2 ; /* Warna tombol saat hover */
+}
+.accordion-button {
+    font-weight: bold; /* Membuat semua tombol accordion menjadi bold */
+
+    
+}
+
+
+/* Bottom Box */
+.bottom-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #87a0e4;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.vaccine-info {
+  margin-bottom: 12px;
+}
+
+.vaccine-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.vaccine-title span {
+  font-size: 16px;
+  color: #131212;
+}
+
+.vaccine-info p {
+  font-size: 14px;
+  color: #201f1f;
+  margin: 0;
+}
+
+.vaccine-info input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 4px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: #4A4A4A;
+}
+
+.done-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #295ec0;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.done-button:hover {
+  background-color: #326bd5;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  position: relative;
+}
+
+.icon:after {
+  content: '';
+  position: absolute;
+  background-color: black;
+  width: 10px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.icon:before {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.nav-item {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #dff6ff;
+  border: 1px solid #b0e0e6;
+  border-radius: 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+.nav-item:hover {
+  background-color: #b0e0e6;
+}
+
+/*bagian 2*/
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.main-content {
+  padding: 0px;
+}
+
+.vaccine-item {
+  background-color: #ffffff;
+  border: 0px solid #fffefe;
+  border-radius: 0px;
+  padding: 0px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.vaccine-item:hover {
+  background-color: #aee8d7;
+}
+
+.vaccine-item.completed {
+  background-color: #d4f8cc; /* Warna hijau pucat untuk vaksin yang sudah disimpan */
+  border: 5px solid #bae48a;
+}
+
+
+/* Latar belakang gelap */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Kotak popup */
+.popup {
+  background-color: #cbdcf3;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: left;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.popup-content {
+  margin: 20px 0;
+}
+
+.popup-content p {
+  margin: 0 0 5px;
+  font-size: 1em;
+}
+
+.popup-content input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.btn-vaksin {
+  width: 100%;
+  padding: 10px;
+  background-color: #6499e4;
+  color: #070707;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-vaksin:hover {
+  background-color: #578fdc;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mulai Diskusi</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <a href="forum_diskusi.html" class="back-icon">&lt;</a>
+    <h1>Forum Diskusi</h1>
+    <div class="header-icons">
+      <span class="info-icon"></span>
+      <span class="bookmark-icon"></span>
+    </div>
+  </div>
+
+  <hr>
+
+  <form class="discussion-form">
+    <div class="form-group">
+      <label for="age-range">Rentang Usia</label>
+      <select id="age-range" name="age-range">
+        <option value="">Pilih Rentang Usia</option>
+        <option value="">0-6 Bulan</option>
+        <option value="">6-12 Bulan</option>
+        <option value="">2 Tahun</option>
+        <option value="">3 Tahun</option>
+        <option value="">4 Tahun</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="discussion-category">Kategori Diskusi</label>
+      <select id="discussion-category" name="discussion-category">
+        <option value="">Pilih Kategori Diskusi</option>
+        <option value="">MPASI</option>
+        <option value="">Masalah Kesehatan</option>
+        <option value="">Asi dan Laktasi</option>
+        <option value="">Pola Asuh dan Pola Tidur</option>
+        <option value="">Psikologi dan Keuangan</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="discussion-title">Judul Diskusi</label>
+      <input type="text" id="discussion-title" name="discussion-title" placeholder="Masukkan judul diskusi">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Deskripsi</label>
+      <textarea id="description" name="description" rows="4" placeholder="Masukkan deskripsi"></textarea>
+    </div>
+
+    <div class="form-note">
+      <p>ℹ️ Saat ini foto hanya bisa diunggah oleh admin Tentang Anak</p>
+    </div>
+
+    <div class="form-checkbox">
+      <input type="checkbox" id="anonymous" name="anonymous">
+      <label for="anonymous">Tampilkan diskusi saya sebagai Anonim</label>
+    </div>
+
+    <div class="form-checkbox">
+      <input type="checkbox" id="terms" name="terms">
+      <label for="terms">
+        Saya telah membaca dan menyetujui 
+        <a href="#">Syarat & Ketentuan Fitur Komunitas Tentang Anak</a>
+      </label>
+    </div>
+
+    <button type="button" class="submit-button" onclick="window.location.href='forum_diskusi.html'">Mulai Diskusi</button>
+  </form>
+</div>
+
+</body>
+</html>

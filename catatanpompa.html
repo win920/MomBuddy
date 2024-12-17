@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <title>Catatan Pompa ASI</title>
+  <style>
+    body {
+      background-color: #cbe6f8;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .note-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .note-item:last-child {
+      border-bottom: none;
+    }
+
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #f1f8ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .durasi {
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+
+    button.btn {
+      border-radius: 12px;
+    }
+
+    h6 {
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <div class="d-flex align-items-center mb-4">
+      <a href="pompa.html" class="text-decoration-none text-dark me-2">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <h5 class="m-0">Catatan Pompa ASI</h5>
+    </div>
+
+    <div id="daftarCatatan"></div>
+
+    <div class="d-grid mt-4">
+      <button class="btn btn-primary btn-lg" onclick="window.location.href='pompaform.html'">TAMBAH CATATAN</button>
+    </div>
+  </div>
+
+  <script>
+    function tampilkanCatatan() {
+      const daftarCatatan = document.getElementById('daftarCatatan');
+      const dataPompa = JSON.parse(localStorage.getItem('catatanPompa')) || [];
+
+      daftarCatatan.innerHTML = '';
+
+      if (dataPompa.length === 0) {
+        daftarCatatan.innerHTML = '<p class="text-center mt-5 text-muted">Belum ada catatan pompa ASI. Tambahkan catatan baru dengan tombol di bawah ini.</p>';
+        return;
+      }
+
+      dataPompa.forEach((catatan, index) => {
+        const cardHTML = document.createElement('div');
+        cardHTML.className = 'card';
+        cardHTML.innerHTML = `
+          <div class="note-item">
+            <div>
+              <strong>${catatan.tanggalMulai} ${catatan.waktuMulai}</strong>
+              <p class="m-0 durasi">Durasi: ${catatan.durasi}</p>
+              <p class="m-0">Jumlah ASI: ${catatan.jumlahASI} ml</p>
+              <p class="m-0">Catatan: ${catatan.catatan}</p>
+            </div>
+            <div class="d-flex align-items-center">
+              <button class="btn btn-outline-primary btn-sm me-2" onclick="editCatatan(${index})">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" onclick="hapusCatatan(${index})">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>`;
+        daftarCatatan.appendChild(cardHTML);
+      });
+    }
+
+    function editCatatan(index) {
+      const dataPompa = JSON.parse(localStorage.getItem('catatanPompa')) || [];
+      const catatan = dataPompa[index];
+
+      // Simpan data ke localStorage untuk diedit di form
+      localStorage.setItem('catatanUntukDiedit', JSON.stringify({ ...catatan, index }));
+      window.location.href = 'pompaform.html';
+    }
+
+    function hapusCatatan(index) {
+      const dataPompa = JSON.parse(localStorage.getItem('catatanPompa')) || [];
+      dataPompa.splice(index, 1);
+      localStorage.setItem('catatanPompa', JSON.stringify(dataPompa));
+      tampilkanCatatan();
+    }
+
+    document.addEventListener('DOMContentLoaded', tampilkanCatatan);
+  </script>
+</body>
+</html>

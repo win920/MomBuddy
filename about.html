@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>MomBuddy</title>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #e0f7ff;
+        }
+        .header-image {
+            max-width: 100px;
+            margin: auto;
+            display: block;
+        }
+        .section-title {
+            font-weight: bold;
+        }
+        .team-photo {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .team-member {
+            flex: 1 1 30%;
+            max-width: 30%;
+            text-align: center;
+        }
+        /* Force the same layout on mobile */
+        @media (max-width: 768px) {
+            .team-member {
+                flex: 1 1 30%;
+                max-width: 30%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5 text-center">
+        <!-- Header -->
+        <img src="lgo1.PNG" alt="Logo" class="header-image mb-3">
+        <h2 class="section-title">Tentang Aplikasi MomBuddy</h2>
+        <p class="text-muted">
+            Aplikasi MomBuddy adalah platform yang dirancang khusus untuk para ibu dan orang tua yang ingin 
+            mendapatkan informasi, dukungan, dan panduan mengenai tumbuh kembang anak. Aplikasi ini menyediakan 
+            berbagai fitur, seperti forum diskusi, diary perkembangan bayi, pengingat vaksinasi, tips dan panduan 
+            kesehatan, serta jadwal aktivitas bayi. MomBuddy juga memungkinkan para ibu untuk terhubung dan berbagi 
+            pengalaman satu sama lain, menciptakan komunitas yang saling mendukung dalam perjalanan mengasuh anak.
+        </p>
+
+        <!-- Bagian Tim Perancang -->
+        <h3 class="section-title mt-5">Tim Perancang</h3>
+        <div class="team-container mt-4">
+            <!-- Anggota Tim 1 -->
+            <div class="team-member">
+                <img src="img/vika.jpeg" class="rounded-circle team-photo mb-2" alt="Rosvika Dwi U">
+                <p class="m-0">Rosvika Dwi U</p>
+                <small class="text-muted">202251120</small>
+            </div>
+            <!-- Anggota Tim 2 -->
+            <div class="team-member">
+                <img src="img/agatha.jpeg" class="rounded-circle team-photo mb-2" alt="Agatha Ayu A">
+                <p class="m-0">Agatha Ayu A</p>
+                <small class="text-muted">202251162</small>
+            </div>
+            <!-- Anggota Tim 3 -->
+            <div class="team-member">
+                <img src="img/dina.jpeg" class="rounded-circle team-photo mb-2" alt="Dina Surya S">
+                <p class="m-0">Dina Surya S</p>
+                <small class="text-muted">202251166</small>
+            </div>
+            <!-- Anggota Tim 4 -->
+            <div class="team-member">
+                <img src="img/aku.jpeg" class="rounded-circle team-photo mb-2" alt="Anissa Puspita">
+                <p class="m-0">Anissa Puspita</p>
+                <small class="text-muted">202251173</small>
+            </div>
+            <!-- Anggota Tim 5 -->
+            <div class="team-member">
+                <img src="img/windy.jpeg" class="rounded-circle team-photo mb-2" alt="Windy Alayda">
+                <p class="m-0">Windy Alayda</p>
+                <small class="text-muted">202251174</small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

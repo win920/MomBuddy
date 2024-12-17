@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <title>Catatan Makan & Minum</title>
+  <style>
+    body {
+      background-color: #cbe6f8;
+    }
+    .card {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .note-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #f1f8ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    h6 {
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex align-items-center mb-4">
+      <a href="makan.html" class="text-decoration-none text-dark me-2">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <h5 class="m-0">Catatan Makan dan Minum</h5>
+    </div>
+
+    <!-- Tampilan Catatan -->
+    <div id="daftarCatatan"></div>
+
+    <!-- Tombol Tambah Catatan -->
+    <div class="d-grid mt-4">
+      <button class="btn btn-primary btn-lg" onclick="window.location.href='formmakan.html'">TAMBAH CATATAN</button>
+    </div>
+  </div>
+
+  <!-- Modal Konfirmasi Hapus -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteLabel">Konfirmasi Hapus</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="images/mom.png" alt="Delete Icon" width="80">
+          <p class="mt-3" id="deleteMessage">Apakah Moms yakin ingin menghapus data ini?<br>Data yang dihapus tidak dapat dipulihkan kembali.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak, batalkan</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Ya, saya yakin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    let deleteId = null; // ID sementara untuk konfirmasi hapus
+
+    function tampilkanCatatan() {
+      const daftarCatatan = document.getElementById('daftarCatatan');
+      const dataMakan = JSON.parse(localStorage.getItem('catatanMakan')) || [];
+
+      // Kosongkan kontainer terlebih dahulu
+      daftarCatatan.innerHTML = '';
+
+      if (dataMakan.length === 0) {
+        daftarCatatan.innerHTML = '<p class="text-center mt-5 text-muted">Belum ada catatan makan. Tambahkan catatan baru dengan tombol di bawah ini.</p>';
+        return;
+      }
+
+      // Kelompokkan catatan berdasarkan tanggal
+      const dataDikelompokkan = new Map();
+      dataMakan.forEach(catatan => {
+        const tanggal = catatan.tanggal || 'Tanggal Tidak Diketahui';
+        if (!dataDikelompokkan.has(tanggal)) {
+          dataDikelompokkan.set(tanggal, []);
+        }
+        dataDikelompokkan.get(tanggal).push(catatan);
+      });
+
+      // Tampilkan catatan berdasarkan tanggal
+      dataDikelompokkan.forEach((catatanList, tanggal) => {
+        const sectionTanggal = document.createElement('h6');
+        sectionTanggal.className = 'mt-3';
+        sectionTanggal.textContent = `Tanggal: ${tanggal}`;
+        daftarCatatan.appendChild(sectionTanggal);
+
+        catatanList.forEach(catatan => {
+          const cardHTML = document.createElement('div');
+          cardHTML.className = 'card';
+          cardHTML.innerHTML = `
+            <div class="note-item">
+              <div class="d-flex align-items-center">
+                <div class="icon-circle me-3">
+                  <i class="bi bi-egg-fried text-dark"></i>
+                </div>
+                <div>
+                  <strong>${catatan.waktu || 'Waktu Tidak Diketahui'}</strong>
+                  <p class="m-0 durasi">${catatan.menu || 'Menu Tidak Diketahui'}</p>
+                  <small class="text-muted">${catatan.catatan || ''}</small>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-outline-secondary btn-sm me-2" onclick="editCatatan(${catatan.id})">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-outline-danger btn-sm" onclick="konfirmasiHapus(${catatan.id})">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>`;
+          daftarCatatan.appendChild(cardHTML);
+        });
+      });
+    }
+
+    function editCatatan(id) {
+      const dataMakan = JSON.parse(localStorage.getItem('catatanMakan')) || [];
+      const catatan = dataMakan.find(item => item.id === id);
+
+      if (catatan) {
+        localStorage.setItem('editCatatan', JSON.stringify(catatan));
+        localStorage.setItem('editIndex', id);
+        window.location.href = 'editmakan.html'; // Ubah ke halaman editmakan.html
+      }
+    }
+
+    function konfirmasiHapus(id) {
+      deleteId = id;
+      document.getElementById('deleteMessage').innerHTML = `Apakah Moms yakin ingin menghapus catatan ini? Data yang dihapus tidak dapat dipulihkan kembali`;
+      const deleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+      deleteModal.show();
+    }
+
+    document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+      if (deleteId !== null) {
+        hapusCatatan(deleteId);
+        deleteId = null;
+      }
+      const deleteModal = bootstrap.Modal.getInstance(document.getElementById('confirmDeleteModal'));
+      deleteModal.hide();
+    });
+
+    function hapusCatatan(id) {
+      let dataMakan = JSON.parse(localStorage.getItem('catatanMakan')) || [];
+      console.log("Data sebelum dihapus:", dataMakan); // Log data sebelum dihapus
+      dataMakan = dataMakan.filter(catatan => catatan.id !== id);
+      console.log("Data setelah dihapus:", dataMakan); // Log data setelah dihapus
+      localStorage.setItem('catatanMakan', JSON.stringify(dataMakan));
+      tampilkanCatatan();
+    }
+
+    // Muat catatan saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', tampilkanCatatan);
+  </script>
+</body>
+</html>

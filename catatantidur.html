@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <title>Catatan Tidur Bayi</title>
+  <style>
+    body {
+      background-color: #cbe6f8;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .note-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .note-item:last-child {
+      border-bottom: none;
+    }
+
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #f1f8ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .durasi {
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+
+    button.btn {
+      border-radius: 12px;
+    }
+
+    h6 {
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex align-items-center mb-4">
+      <a href="tidur.html" class="text-decoration-none text-dark me-2">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <h5 class="m-0">Catatan Tidur</h5>
+    </div>
+
+    <!-- Tampilan Catatan -->
+    <div id="daftarCatatan"></div>
+
+    <!-- Tombol Tambah Catatan -->
+    <div class="d-grid mt-4">
+      <button class="btn btn-primary btn-lg" onclick="window.location.href='sleepform.html'">TAMBAH CATATAN</button>
+    </div>
+  </div>
+
+  <!-- Modal Konfirmasi Hapus -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteLabel">Konfirmasi Hapus</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="images/mom.png" alt="Delete Icon" width="80">
+          <p class="mt-3" id="deleteMessage">Apakah Moms yakin ingin menghapus data ini?<br>Data yang dihapus tidak dapat dipulihkan kembali.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak, batalkan</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Ya, saya yakin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle dengan Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script Interaktif -->
+  <script>
+    let deleteId = null;
+
+    function tampilkanCatatan() {
+      const daftarCatatan = document.getElementById('daftarCatatan');
+      const dataTidur = JSON.parse(localStorage.getItem('catatanTidur')) || [];
+
+      // Kosongkan kontainer terlebih dahulu
+      daftarCatatan.innerHTML = '';
+
+      if (dataTidur.length === 0) {
+        daftarCatatan.innerHTML = '<p class="text-center mt-5 text-muted">Belum ada catatan tidur. Tambahkan catatan baru dengan tombol di bawah ini.</p>';
+        return;
+      }
+
+      // Kelompokkan catatan berdasarkan tanggal
+      const dataDikelompokkan = new Map();
+      dataTidur.forEach(catatan => {
+        // Pastikan properti tanggal tersedia
+        const tanggal = catatan.tanggal || 'Tanggal Tidak Diketahui';
+        if (!dataDikelompokkan.has(tanggal)) {
+          dataDikelompokkan.set(tanggal, []);
+        }
+        dataDikelompokkan.get(tanggal).push(catatan);
+      });
+
+      // Tampilkan catatan berdasarkan tanggal
+      dataDikelompokkan.forEach((catatanList, tanggal) => {
+        // Tambahkan header tanggal
+        const sectionTanggal = document.createElement('h6');
+        sectionTanggal.className = 'mt-3';
+        sectionTanggal.textContent = `Tanggal: ${tanggal}`;
+        daftarCatatan.appendChild(sectionTanggal);
+
+        catatanList.forEach(catatan => {
+          const cardHTML = document.createElement('div');
+          cardHTML.className = 'card';
+          cardHTML.innerHTML = `
+            <div class="note-item">
+              <div class="d-flex align-items-center">
+                <div class="icon-circle me-3">
+                  <i class="bi bi-moon-fill text-dark"></i>
+                </div>
+                <div>
+                  <strong>${catatan.waktu || 'Waktu Tidak Diketahui'}</strong>
+                  <p class="m-0 durasi">${catatan.durasi || 'Durasi Tidak Diketahui'}</p>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-outline-secondary btn-sm me-2" onclick="editCatatan(${catatan.id})">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-outline-danger btn-sm" onclick="konfirmasiHapus(${catatan.id})">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>`;
+          daftarCatatan.appendChild(cardHTML);
+        });
+      });
+    }
+
+    
+    function simpanCatatan() {
+    const waktu = document.getElementById('waktu').value;
+    const durasi = document.getElementById('durasi').value;
+    const tanggal = new Date().toISOString().split('T')[0];
+
+    // Ambil data catatan tidur yang sudah ada dari localStorage
+    const dataTidur = JSON.parse(localStorage.getItem('catatanTidur')) || [];
+
+    // Membuat ID unik untuk setiap catatan
+    const id = new Date().getTime();
+
+    // Menambahkan catatan baru ke array
+    dataTidur.push({
+      id: id,
+      waktu: waktu,
+      durasi: durasi,
+      tanggal: tanggal
+    });
+
+    // Simpan kembali ke localStorage
+    localStorage.setItem('catatanTidur', JSON.stringify(dataTidur));
+
+    // Kembali ke halaman catatantidur
+    window.location.href = 'catatantidur.html';
+  }
+
+
+
+    function editCatatan(id) {
+      const dataTidur = JSON.parse(localStorage.getItem('catatanTidur')) || [];
+      const catatan = dataTidur.find(item => item.id === id);
+
+      if (catatan) {
+        localStorage.setItem('editCatatan', JSON.stringify(catatan));
+        localStorage.setItem('editIndex', id);
+        window.location.href = 'editdata.html';
+      }
+    }
+
+    function konfirmasiHapus(id) {
+      deleteId = id;
+      const dataTidur = JSON.parse(localStorage.getItem('catatanTidur')) || [];
+      const catatan = dataTidur.find(item => item.id === id);
+
+      document.getElementById('deleteMessage').innerHTML = `Apakah Moms yakin ingin menghapus catatan ini? Data yang dihapus tidak dapat dipulihkan kembali`;
+      const deleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+      deleteModal.show();
+    }
+
+    document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+      if (deleteId !== null) {
+        hapusCatatan(deleteId);
+        deleteId = null;
+      }
+      const deleteModal = bootstrap.Modal.getInstance(document.getElementById('confirmDeleteModal'));
+      deleteModal.hide();
+    });
+
+    function hapusCatatan(id) {
+      let dataTidur = JSON.parse(localStorage.getItem('catatanTidur')) || [];
+      dataTidur = dataTidur.filter(catatan => catatan.id !== id);
+      localStorage.setItem('catatanTidur', JSON.stringify(dataTidur));
+      tampilkanCatatan();
+    }
+
+    // Muat catatan saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', tampilkanCatatan);
+  </script>
+</body>
+</html>

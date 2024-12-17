@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Buang Air</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f4ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .form-container h1 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-container h1::before {
+            content: '\2190'; /* Unicode for left arrow */
+            font-size: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Data Buang Air</h1>
+        <form id="formBuangAir">
+            <label for="aktivitas">Jenis Buang Air *</label>
+            <select id="aktivitas" name="aktivitas" required>
+                <option value="">Pilih Jenis Buang Air</option>
+                <option value="besar">Buang Air Besar</option>
+                <option value="kecil">Buang Air Kecil</option>
+            </select>
+            <span id="aktivitasError" class="error hidden">Pilih jenis buang air terlebih dahulu!</span>
+
+            <label for="tanggalMulai">Tanggal Mulai *</label>
+            <input type="date" id="tanggalMulai" name="tanggalMulai" required>
+            <span id="tanggalError" class="error hidden">Tanggal harus diisi!</span>
+
+            <label for="waktuMulai">Waktu Mulai *</label>
+            <input type="time" id="waktuMulai" name="waktuMulai" required>
+            <span id="waktuError" class="error hidden">Waktu harus diisi!</span>
+
+            <label for="catatan">Catatan</label>
+            <textarea id="catatan" name="catatan" rows="3" placeholder="Contoh: Buang air besar setelah makan pagi"></textarea>
+
+            <button type="submit" class="button">Simpan</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('aktivitas').addEventListener('change', function () {
+            const besarFields = document.getElementById('besarFields');
+            const kecilFields = document.getElementById('kecilFields');
+
+            if (this.value === 'besar') {
+                besarFields.classList.remove('hidden');
+                kecilFields.classList.add('hidden');
+            } else if (this.value === 'kecil') {
+                kecilFields.classList.remove('hidden');
+                besarFields.classList.add('hidden');
+            } else {
+                besarFields.classList.add('hidden');
+                kecilFields.classList.add('hidden');
+            }
+        });
+
+        
+        
+    document.getElementById('formBuangAir').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const aktivitas = document.getElementById('aktivitas').value;
+        const tanggal = document.getElementById('tanggalMulai').value;
+        const waktu = document.getElementById('waktuMulai').value;
+        const catatan = document.getElementById('catatan').value;
+
+        let jenisBuangAir = '';
+        if (aktivitas === 'besar') {
+            jenisBuangAir = 'Buang Air Besar';
+        } else if (aktivitas === 'kecil') {
+            jenisBuangAir = 'Buang Air Kecil';
+        }
+
+        let isValid = true;
+        if (!aktivitas) {
+            document.getElementById('aktivitasError').classList.remove('hidden');
+            isValid = false;
+        } else {
+            document.getElementById('aktivitasError').classList.add('hidden');
+        }
+        if (!tanggal) {
+            document.getElementById('tanggalError').classList.remove('hidden');
+            isValid = false;
+        } else {
+            document.getElementById('tanggalError').classList.add('hidden');
+        }
+        if (!waktu) {
+            document.getElementById('waktuError').classList.remove('hidden');
+            isValid = false;
+        } else {
+            document.getElementById('waktuError').classList.add('hidden');
+        }
+
+        if (!isValid) return;
+
+        // Save data to localStorage with the correct key
+        const data = JSON.parse(localStorage.getItem('catatanBuangAir')) || [];
+        const newId = data.length ? data[data.length - 1].id + 1 : 1; // Generate new ID
+        data.push({
+            id: newId,
+            aktivitas: jenisBuangAir,
+            tanggal,
+            waktu,
+            catatan
+        });
+
+        localStorage.setItem('catatanBuangAir', JSON.stringify(data));
+        alert('Data berhasil disimpan!');
+        window.location.href = 'catatanbuang.html';
+    });
+</script>
+
+</body>
+</html>

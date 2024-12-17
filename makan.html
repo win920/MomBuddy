@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <title>Makan & Minum</title>
+  <style>
+    body {
+      background-color: #eaf6ff; /* Latar belakang biru muda */
+      font-family: Arial, sans-serif;
+    }
+    .header {
+      gap: 10px;
+    }
+    .icon-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-circle img, .icon-circle i {
+      width: 40px;
+      height: 40px;
+    }
+    .note-item {
+      background-color: #fff8f8;
+      border: 1px solid #ddd;
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .gray-box {
+      background-color: #ececec;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .blue-link {
+      color: #6c63ff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-4">
+    <!-- Header -->
+    <div class="header d-flex align-items-center mb-4">
+      <a href="jadwal.html" class="text-decoration-none text-dark">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <h5 class="m-0">Makan & Minum</h5>
+    </div>
+
+    <!-- Ikon Makan & Minum -->
+<div class="sleep-section p-3 rounded" style="background-color: #ffffff; margin-bottom: 20px;">
+  <div class="d-flex justify-content-center">
+    <div class="text-center mx-3">
+      <div class="icon-circle mx-auto mb-2">
+        <img src="images/makan.png" alt="Makan">
+      </div>
+      <p class="mt-2 mb-0">Makan</p>
+    </div>
+    <div class="text-center mx-3">
+      <div class="icon-circle mx-auto mb-2">
+        <img src="images/gelas.png" alt="Minum">
+      </div>
+      <p class="mt-2 mb-0">Minum</p>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Kebutuhan Cairan -->
+    <div class="gray-box">
+      <p class="mb-1"><strong>Kebutuhan Cairan</strong></p>
+      <p class="mb-1">Aerna membutuhkan 1000 ml cairan setiap hari. Cairan dapat berasal dari makanan atau minuman.</p>
+      <a href="#" class="blue-link">Pelajari Lebih Lanjut ></a>
+    </div>
+
+    <!-- Catatan -->
+    <h6 class="section-title">Catatan</h6>
+    <p>Hari Ini</p>
+    <div id="daftarCatatan">
+      <div class="note-item d-flex align-items-center justify-content-between p-3 rounded mb-2">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-egg me-3" style="font-size: 2rem;"></i>
+          <div>
+            <p class="mb-1 fw-bold">10.40 - Makanan Utama</p>
+            <p class="mb-0 text-muted">Makan Nasi</p>
+          </div>
+        </div>
+        <button class="btn btn-sm btn-outline-dark"><i class="bi bi-pencil"></i></button>
+      </div>
+      <div class="note-item d-flex align-items-center justify-content-between p-3 rounded mb-2">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-cup-straw me-3" style="font-size: 2rem;"></i>
+          <div>
+            <p class="mb-1 fw-bold">07.20 - Susu Formula</p>
+            <p class="mb-0 text-muted">Minum Susu</p>
+          </div>
+        </div>
+        <button class="btn btn-sm btn-outline-dark"><i class="bi bi-pencil"></i></button>
+      </div>
+    </div>
+
+    <a href="catatanmakan.html" class="blue-link d-block text-center mt-3">Lihat Semua Catatan ></a>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

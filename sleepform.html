@@ -1,0 +1,152 @@
+<!-- sleepform.html -->
+<!doctype html>
+<html lang="id">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Link ke CSS Eksternal -->
+  <link rel="stylesheet" href="styles1.css">
+
+  <title>Data Tidur</title>
+</head>
+<body>
+  <div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex align-items-center mb-4">
+      <a href="catatantidur.html" class="text-decoration-none text-dark me-2">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <h5 class="m-0">Data Tidur</h5>
+    </div>
+
+    <!-- Form Data Tidur -->
+    <form onsubmit="simpanData(event)">
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
+          <input type="date" class="form-control" id="tanggalMulai">
+        </div>
+        <div class="col-md-6">
+          <label for="waktuMulai" class="form-label">Waktu Mulai</label>
+          <input type="time" class="form-control" id="waktuMulai">
+        </div>
+        <div class="col-md-6">
+          <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
+          <input type="date" class="form-control" id="tanggalSelesai">
+        </div>
+        <div class="col-md-6">
+          <label for="waktuSelesai" class="form-label">Waktu Selesai</label>
+          <input type="time" class="form-control" id="waktuSelesai">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="durasiOtomatis" class="form-label">Durasi Otomatis</label>
+        <input type="text" class="form-control" id="durasiOtomatis" readonly>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Bootstrap JS Bundle dengan Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script Interaktif -->
+  <script>
+    // Menambahkan interaksi klik pada label
+    document.querySelectorAll('label[for]').forEach(label => {
+      label.addEventListener('click', () => {
+        const inputId = label.getAttribute('for');
+        const inputElement = document.getElementById(inputId);
+        if (inputElement) {
+          inputElement.focus();
+        }
+      });
+    });
+
+    // Fungsi hitung durasi
+    document.getElementById('tanggalMulai').addEventListener('input', hitungDurasi);
+    document.getElementById('waktuMulai').addEventListener('input', hitungDurasi);
+    document.getElementById('tanggalSelesai').addEventListener('input', hitungDurasi);
+    document.getElementById('waktuSelesai').addEventListener('input', hitungDurasi);
+
+    function hitungDurasi() {
+      const tanggalMulai = document.getElementById('tanggalMulai').value;
+      const waktuMulai = document.getElementById('waktuMulai').value;
+      const tanggalSelesai = document.getElementById('tanggalSelesai').value;
+      const waktuSelesai = document.getElementById('waktuSelesai').value;
+
+      // Default pesan jika input belum lengkap
+      let pesan = 'Isi semua data untuk menghitung durasi';
+
+      if (tanggalMulai && waktuMulai && tanggalSelesai && waktuSelesai) {
+        const start = new Date(`${tanggalMulai}T${waktuMulai}`);
+        const end = new Date(`${tanggalSelesai}T${waktuSelesai}`);
+
+        if (end > start) {
+          const durasiMs = end - start;
+          const durasiJam = Math.floor(durasiMs / (1000 * 60 * 60));
+          const durasiMenit = Math.floor((durasiMs % (1000 * 60 * 60)) / (1000 * 60));
+
+          pesan = `${durasiJam} jam ${durasiMenit} menit`;
+        } else {
+          pesan = 'Durasi tidak valid';
+        }
+      }
+
+      // Tampilkan pesan ke input durasi otomatis
+      document.getElementById('durasiOtomatis').value = pesan;
+    }
+
+    // Fungsi untuk menyimpan data ke localStorage
+    function simpanData(event) {
+      event.preventDefault(); // Mencegah reload halaman
+
+      // Ambil nilai dari formulir
+      const tanggalMulai = document.getElementById('tanggalMulai').value;
+      const waktuMulai = document.getElementById('waktuMulai').value;
+      const tanggalSelesai = document.getElementById('tanggalSelesai').value;
+      const waktuSelesai = document.getElementById('waktuSelesai').value;
+      const durasiOtomatis = document.getElementById('durasiOtomatis').value;
+
+      
+      // Validasi data
+      if (!tanggalMulai || !waktuMulai || !tanggalSelesai || !waktuSelesai) {
+        alert('Isi semua data sebelum menyimpan!');
+        return;
+      }
+
+      // Ambil tanggal saat ini untuk catatan
+      const tanggalCatatan = new Date().toLocaleDateString('id-ID', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+
+      
+     // Simpan ke localStorage
+    const dataTidur = JSON.parse(localStorage.getItem('catatanTidur')) || [];
+    dataTidur.push({
+      id: Date.now(), // ID unik berdasarkan timestamp
+      tanggal: tanggalCatatan, // Tambahkan tanggal
+      waktu: `${waktuMulai} - ${waktuSelesai}`,
+      durasi: durasiOtomatis,
+    });
+    localStorage.setItem('catatanTidur', JSON.stringify(dataTidur));
+      // Redirect ke catatan.html
+      window.location.href = 'catatantidur.html','tidur.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Link ke CSS Eksternal -->
+  <link rel="stylesheet" href="styles1.css">
+
+  <title>Data Pompa ASI</title>
+</head>
+<body style="background-color: #D6EBFA;">
+  <div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex align-items-center mb-4">
+      <a href="catatanpompa.html" class="text-decoration-none text-dark me-2">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <h5 class="m-0">Data Pompa ASI</h5>
+    </div>
+
+    <!-- Form Data Pompa ASI -->
+    <form onsubmit="simpanData(event)">
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
+          <input type="date" class="form-control" id="tanggalMulai" value="2024-10-13">
+        </div>
+        <div class="col-md-6">
+          <label for="waktuMulai" class="form-label">Waktu Mulai</label>
+          <input type="time" class="form-control" id="waktuMulai" value="11:33">
+        </div>
+        <div class="col-md-6">
+          <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
+          <input type="date" class="form-control" id="tanggalSelesai" value="2024-10-13">
+        </div>
+        <div class="col-md-6">
+          <label for="waktuSelesai" class="form-label">Waktu Selesai</label>
+          <input type="time" class="form-control" id="waktuSelesai" value="11:38">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="durasiOtomatis" class="form-label">Durasi Otomatis</label>
+        <input type="text" class="form-control bg-secondary text-white" id="durasiOtomatis" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="jumlahASI" class="form-label">Jumlah ASI (ml)</label>
+        <input type="number" class="form-control" id="jumlahASI" placeholder="Contoh: 50">
+      </div>
+
+      <div class="mb-3">
+        <label for="catatan" class="form-label">Catatan</label>
+        <input type="text" class="form-control" id="catatan" placeholder="Contoh: Lumayan">
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary" style="background-color: #6C63FF; border: none;">SIMPAN</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Bootstrap JS Bundle dengan Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script Interaktif -->
+  <script>
+    document.getElementById('tanggalMulai').addEventListener('input', hitungDurasi);
+    document.getElementById('waktuMulai').addEventListener('input', hitungDurasi);
+    document.getElementById('tanggalSelesai').addEventListener('input', hitungDurasi);
+    document.getElementById('waktuSelesai').addEventListener('input', hitungDurasi);
+
+    function hitungDurasi() {
+      const tanggalMulai = document.getElementById('tanggalMulai').value;
+      const waktuMulai = document.getElementById('waktuMulai').value;
+      const tanggalSelesai = document.getElementById('tanggalSelesai').value;
+      const waktuSelesai = document.getElementById('waktuSelesai').value;
+
+      let pesan = 'Isi semua data untuk menghitung durasi';
+
+      if (tanggalMulai && waktuMulai && tanggalSelesai && waktuSelesai) {
+        const start = new Date(`${tanggalMulai}T${waktuMulai}`);
+        const end = new Date(`${tanggalSelesai}T${waktuSelesai}`);
+
+        if (end > start) {
+          const durasiMs = end - start;
+          const durasiJam = Math.floor(durasiMs / (1000 * 60 * 60));
+          const durasiMenit = Math.floor((durasiMs % (1000 * 60 * 60)) / (1000 * 60));
+
+          pesan = `${durasiJam} jam ${durasiMenit} menit`;
+        } else {
+          pesan = 'Durasi tidak valid';
+        }
+      }
+
+      document.getElementById('durasiOtomatis').value = pesan;
+    }
+
+    function simpanData(event) {
+      event.preventDefault();
+
+      const tanggalMulai = document.getElementById('tanggalMulai').value;
+      const waktuMulai = document.getElementById('waktuMulai').value;
+      const tanggalSelesai = document.getElementById('tanggalSelesai').value;
+      const waktuSelesai = document.getElementById('waktuSelesai').value;
+      const durasiOtomatis = document.getElementById('durasiOtomatis').value;
+      const jumlahASI = document.getElementById('jumlahASI').value;
+      const catatan = document.getElementById('catatan').value;
+
+      if (!tanggalMulai || !waktuMulai || !tanggalSelesai || !waktuSelesai || !jumlahASI) {
+        alert('Isi semua data sebelum menyimpan!');
+        return;
+      }
+
+      const dataPompa = JSON.parse(localStorage.getItem('catatanPompa')) || [];
+      dataPompa.push({
+        id: Date.now(),
+        tanggalMulai,
+        waktuMulai,
+        tanggalSelesai,
+        waktuSelesai,
+        durasi: durasiOtomatis,
+        jumlahASI,
+        catatan
+      });
+
+      localStorage.setItem('catatanPompa', JSON.stringify(dataPompa));
+
+      window.location.href = 'catatanpompa.html';
+    }
+  </script>
+</body>
+</html>

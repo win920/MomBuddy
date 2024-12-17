@@ -1,0 +1,1074 @@
+<!doctype html>
+<html lang="en">  
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Julee&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <title>Baby Journal Photo Frame</title>
+
+    <style>
+
+        *,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+        body {
+           font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            background-image: url('pictures/utama.jpeg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;  /* Menyusun konten secara horizontal */
+            align-items: center;      /* Menyusun konten secara vertikal */
+            flex-direction: column;
+            font-size: 1.5rem;
+            width: 100%;
+    height: 100%;
+        }
+
+        /* Mengatur ukuran dan posisi elemen utama */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Atur ukuran maksimal */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+        .btn-warning-custom, .btn-outline-warning-custom {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #212529;
+            padding: 0.6rem 1.5rem;
+            font-size: 1.25rem;
+            border-radius: 2rem;
+            width: 120px;
+        }
+
+
+        .upload-options {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.upload-options button {
+    width: 100px;
+    margin: 5px;
+}
+
+.d-none {
+    display: none;
+}
+
+        .upload-area {
+    border: 1px dashed #00BFFF; /* Biru muda untuk border */
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    max-width: 120px; /* Ukuran maksimal untuk kotak */
+    margin: 0 auto; /* Tengahin kotaknya */
+    width: 440px;
+    height: 140px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding-top: 100%; /* Membuat kotak persegi */
+}
+
+        /* CSS untuk bagian form */
+        .bg-opacity {
+    margin-top: 20px;
+    background-color: rgba(173, 216, 230, 0.6); /* Warna biru muda */
+    padding: 15px;
+    border-radius: 10px; /* Agar pojok lebih halus */
+    width: 150px; /* Ukuran kotak tetap kecil */
+    margin-left: auto;
+    margin-right: auto; /* Memastikan elemen berada di tengah */
+}
+
+/* CSS untuk grid layout */
+.d-flex {
+    display: flex;
+    flex-wrap: wrap; /* Agar elemen bisa pindah ke baris baru */
+    gap: 15px; /* Jarak antar elemen */
+    justify-content: space-between;
+}
+
+.upload-item {
+    flex: 1 1 calc(33.33% - 15px); /* Setiap elemen mengambil 1/3 lebar */
+    max-width: calc(33.33% - 15px); /* Membatasi lebar maksimum */
+    box-sizing: border-box; /* Agar padding tidak memengaruhi ukuran */
+}
+        .upload-area img {
+    width: 100%;        /* Gambar akan menyesuaikan lebar kontainer */
+    height: auto;       /* Menjaga rasio gambar agar tetap proporsional */
+    max-width: 100%;    /* Tidak akan melebihi lebar kontainer */
+    object-fit: cover;  /* Menjaga agar gambar tidak terdistorsi */
+}
+
+
+        .camera-circle {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    
+}
+
+/* Teks di dalam elemen */
+.upload-text {
+    font-size: 11px; /* Ukuran tetap */
+}
+
+/* Menjaga gambar dalam upload area */
+.upload-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0%;
+}
+
+/* Menghindari perubahan ukuran elemen dalam kondisi kecil */
+@media (max-width: 768px) {
+    /* Hanya menyesuaikan elemen jika perlu, bukan tata letak */
+    .container {
+        padding: 10px;
+    }
+
+    .upload-area {
+        width: 90%; /* Menyesuaikan ukuran konten */
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+}
+.upload-area:active {
+    transform: scale(0.98); /* Efek sedikit mengecil untuk memberikan kesan timbul */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);}
+        .julee-bold {
+            font-family: 'Julee', cursive;
+            font-weight: bold;
+        }
+
+        .side-image {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            z-index: 1
+        }
+
+        .side-image.top {
+    position: absolute;
+    left: 37%;
+    transform: translateX(-50%) rotate(-15deg);
+    top: 50%; /* Menempatkan D3 sedikit lebih tinggi (di atas D2) */
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    z-index: 2; /* Pastikan D3 berada di atas D2 */
+}
+
+        .side-image.left {
+    left: 36%; /* Posisikan gambar lebih dekat ke kotak upload */
+    margin-left: 0; /* Hapus margin kiri tambahan */
+    top: 80%;
+}
+
+.side-image.right {
+    right: 36%; /* Posisikan gambar lebih dekat ke kotak upload */
+    margin-right: 0; /* Hapus margin kanan tambahan */
+    top: 80%;
+}
+/*bagian gambar ibu dan si kecil*/
+.side-image-custom {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+    }
+
+    /* Menambahkan kelas khusus untuk memindahkan Si Kecil lebih ke kiri */
+.left-position {
+    position: relative;
+    left: -300px; /* Pindahkan gambar lebih ke kiri */
+    text-align: center; /* Pastikan teks di bawah gambar terletak dengan benar */
+}
+
+    /* Gambar Si Kecil (kiri bawah) */
+.side-image-custom.left-below {
+    position: relative;
+    margin-left: 0px; /* Pindahkan lebih ke kiri */
+    margin-bottom: 8px;
+}
+
+.right-position {
+    position: relative;
+    left: 300px; /* Pindahkan gambar lebih ke kanan */
+    text-align: center; /* Pastikan teks di bawah gambar terletak dengan benar */
+}
+.side-image-custom.right-below {
+    position: relative;
+    margin-right: 0; /* Hilangkan margin-right agar gambar lebih dekat dengan posisi yang diinginkan */
+    margin-bottom: 8px; /* Menambahkan sedikit jarak antara gambar dan teks */
+}
+
+/* Latar belakang biru muda untuk bagian bawah (D4 hingga bawah) */
+.bg-light-blue {
+    background-color: #ADD8E6; /* Warna biru muda */
+    padding: 20px 0; /* Menambahkan jarak padding di sekitar konten */
+}
+
+/* Latar belakang putih untuk bagian atas (Nama dan Tanggal) */
+.bg-white {
+    background-color: white;
+    padding: 20px 0;
+}
+/* Tulisan di bawah gambar */
+.image-caption {
+    margin-top: 10px; /* Jarak antara gambar dan caption */
+    font-size: 1rem;
+    color: #000000; /* Warna teks hitam */
+    font-family: 'Times New Roman', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); /* Efek pinggiran putih */
+}
+
+
+
+
+        .upload-area {
+    z-index: 2; /* Pastikan kotak unggah berada di atas gambar sisi */
+    /* Properti lainnya tetap sama */
+}
+        .circle-option {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #4A7395;
+            color: white;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 10px;
+        }
+
+        #uploadOptions {
+            display: none;
+        }
+
+        .preview-image {
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+
+        .text-primary-shadow {
+            color: #4A7395;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+        }
+
+        .info {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .info .child-name, .info .birth-date {
+            font-family: 'Times New Roman', serif;
+            font-weight: normal;
+            font-size: 1.25rem;
+        }
+
+        #uploadOptions button {
+    font-size: 0.9rem; /* Mengurangi ukuran font */
+    background-color: white; /* Menambahkan latar belakang putih */
+    color: #4A7395; /* Warna teks yang lebih gelap agar kontras dengan latar belakang putih */
+    border: 2px solid #4A7395; /* Menambahkan border berwarna biru */
+    padding: 0.5rem 1rem; /* Menyesuaikan padding */
+    border-radius: 0.75rem; /* Menghaluskan sudut */
+    margin: 5px 0; /* Menambahkan jarak antar tombol */
+}
+
+#uploadOptions button:hover {
+    background-color: #f8f9fa; /* Menambahkan efek hover */
+    color: #4A7395; /* Warna teks tetap kontras saat hover */
+}
+.images-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* Tambahkan jarak antar gambar */
+    position: relative; /* Agar posisi anak-anaknya bisa diatur */
+}
+
+.image-wrapper {
+    text-align: center; /* Agar caption berada tepat di bawah gambar */
+    flex: 1;
+}
+
+.info-img {
+    width: 150px; /* Ukuran gambar lebih kecil */
+    height: auto;
+    border-radius: 8px; /* Efek rounded pada gambar */
+}
+
+/* Font Comic Sans MS */
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+/* Kotak Kembali Ke Atas */
+.back-to-top-box {
+    background-color: #ffffff; /* Warna latar belakang putih */
+    border: 3px solid #ccc;    /* Border abu-abu terang */
+    padding: 10px 20px;
+    text-align: center;        /* Menyusun teks di tengah */
+    margin-top: 80px;          /* Jarak dari elemen sebelumnya */
+    border-radius: 40px;       /* Pojok kotak melengkung */
+    width: 170px;              /* Lebar kotak */
+    display: flex;             /* Gunakan flexbox untuk penataan */
+    align-items: center;       /* Vertikal center */
+    justify-content: flex-start; /* Agar teks dan panah lebih dekat dan sejajar */
+    margin-left: auto;         /* Mengatur kotak agar berada di tengah */
+    margin-right: auto;        /* Mengatur kotak agar berada di tengah */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek timbul */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasi saat klik */
+}
+
+/* Efek hover pada kotak */
+.back-to-top-box:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Perbesar bayangan saat hover */
+}
+
+/* Teks Kembali Ke Atas */
+.back-to-top-text {
+    font-size: 14px; /* Ukuran font lebih kecil */
+    font-weight: bold;
+    color: #007BFF;  /* Warna biru untuk teks */
+    margin: 0;        /* Menghilangkan margin default */
+}
+
+/* Tanda panah ke atas */
+.arrow-up {
+    font-size: 24px;  /* Ukuran tanda panah lebih kecil */
+    color: #007BFF;  /* Warna biru untuk tanda panah */
+    font-weight: bold;
+    cursor: pointer; /* Menambahkan efek kursor ketika hover */
+    transition: transform 0.3s ease;
+    margin-left: 5px; /* Memberikan jarak antara teks dan tanda panah */
+}
+
+/* Efek saat hover pada tanda panah */
+.arrow-up:hover {
+    transform: translateY(-5px);  /* Efek ketika hover */
+}
+
+/* Animasi klik pada kotak */
+.back-to-top-box:active {
+    transform: scale(0.98);  /* Mengurangi ukuran kotak sedikit saat klik */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan saat klik */
+}
+
+/* Hapus Info Si Kecil */
+.delete-info-box {
+    margin-top: 20px; /* Jarak dari elemen sebelumnya */
+    text-align: center; /* Memastikan teks terpusat */
+    cursor: pointer;
+    font-size: 16px;
+    font-style: italic;
+    display: block; /* Memastikan elemen berada di bawah dan terpusat */
+    width: auto; /* Agar lebar elemen fleksibel */
+    margin-left: auto; /* Untuk meletakkan elemen di tengah */
+    margin-right: auto; /* Untuk meletakkan elemen di tengah */
+    transition: transform 0.2s ease, opacity 0.2s ease; /* Efek animasi */
+    cursor: pointer;
+}
+
+/* Teks Hapus Info Si Kecil */
+.delete-info-text {
+    text-decoration: underline;
+    color: #007BFF;  /* Warna biru untuk teks */
+}
+
+.delete-info-box:active {
+    transform: scale(0.95); /* Sedikit mengecil saat diklik */
+    opacity: 0.9; /* Sedikit memudar */
+}
+
+/* Ikon panah 2 */
+.double-arrow {
+    font-size: 18px;
+    color: #007BFF;  /* Warna biru untuk ikon panah */
+    margin-left: 5px;
+}
+
+/* Modal Konfirmasi Hapus */
+.modal {
+    display: none; /* Sembunyikan modal secara default */
+    position: fixed;
+    z-index: 1; /* Pastikan modal berada di atas konten lain */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang transparan hitam */
+    overflow: auto; /* Menambahkan scroll jika diperlukan */
+    padding-top: 100px;
+    text-align: center;
+}
+
+/* Konten modal */
+.modal-content {
+    background-color: #285a8c; /* Warna biru tua */
+    padding: 20px;
+    border-radius: 20px; /* Membuat sudut lebih melengkung */
+    width: 300px;
+    margin: auto;
+    position: relative;
+    font-family: 'Times New Roman', serif; /* Font klasik */
+    font-size: 14px; /* Ukuran font */
+    color: #ffffff; /* Warna teks putih */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Efek timbul */
+    border: 2px solid #69d3df; /* Border biru yang lebih terang untuk kontras */
+}
+
+/* Tombol Tutup Modal */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white; /* Warna tombol tutup */
+}
+
+/* Tombol Konfirmasi (Batal dan Hapus) */
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cancel-btn, .delete-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    color: #4088d5; /* Warna teks biru untuk tombol */
+    background-color: white; /* Warna latar belakang putih */
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover, .delete-btn:hover {
+    background-color: #FFEB3B; /* Warna kuning saat hover atau klik */
+    color: #000; /* Mengubah warna teks menjadi hitam */
+}
+
+/* Efek Animasi Modal */
+.modal-content {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/**Garis**/
+.custom-line {
+    border: 0;
+    border-top: 25px solid #696767; /* Warna abu-abu dan ketebalan garis */
+    margin: 1px 0; /* Jarak atas dan bawah dari garis */
+    width: 100%; /* Lebar garis memenuhi layar */
+}
+
+
+
+    </style>
+</head>
+<body class="d-flex align-items-center justify-content-center min-vh-100">
+    <div class="container w-100 max-w-md bg-container position-relative">
+        
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <i class="fas fa-arrow-left text-primary fs-4 position-absolute" style="top: 2.5rem; left: 0.5rem; cursor: pointer;" onclick="window.location.href='Diary.html'"></i>
+            <!-- Ikon Home di pojok kanan atas -->
+            <i class="fas fa-home text-primary fs-4 position-absolute" style="top: 2.5rem; right: 0.5rem; cursor: pointer;" onclick="window.location.href='Home.html'"></i>
+        </div>
+
+        <!-- Side Images -->
+       <!-- Side Images -->
+       <img src="pictures/D1.png" alt="Side Image Right" class="side-image right">
+       <img src="pictures/D3.png" alt="Side Image Top" class="side-image top"> <!-- D3 di atas D2 -->
+       <img src="pictures/D2.jpg" alt="Side Image Left" class="side-image left">
+       
+       <!-- Area untuk menampilkan gambar yang diunggah -->
+<!-- Area untuk menampilkan gambar yang diunggah -->
+<!-- Area untuk menampilkan gambar yang diunggah -->
+<div class="upload-area rounded-lg shadow-sm p-3" onclick="document.getElementById('mediaInput').click();">
+    <div class="camera-circle rounded-circle mx-auto">
+        <i class="fas fa-camera text-primary fs-2"></i>
+    </div>
+    <p class="text-muted fw-semibold upload-text">Upload Gambar</p>
+</div>
+
+<!-- Input untuk memilih gambar (tersembunyi) -->
+<input type="file" id="mediaInput" accept="image/*" style="display: none;" onchange="handleFileUpload(event)">
+                <!-- Input untuk File Kamera dan Media -->
+                <input type="file" id="cameraInput" accept="image/*" capture="camera" style="display: none;">
+                <input type="file" id="mediaInput" accept="image/*" style="display: none;">
+            </div>
+
+            <div id="preview" class="mt-3 preview"></div>
+        </div>
+       
+<!-- Information Section -->
+<!-- Information Section -->
+<div class="info">
+    <p class="text-primary-shadow">Nama si Kecil:</p>
+    <p><strong><span id="nameDisplay"></span></strong></p>
+    <p class="text-primary-shadow">Tanggal Lahir si Kecil:</p>
+    <p><strong><span id="dobDisplay"></span></strong></p>
+</div>
+
+
+
+
+<!-- Gambar D4 dan D5 -->
+<div class="images-container d-flex justify-content-between mt-3">
+    <div class="image-wrapper left-position">
+        <img src="pictures/D4.png" alt="D4 Image" class="info-img">
+        <p class="image-caption">Si Kecil</p>
+    </div>
+    <div class="image-wrapper right-position">
+        <img src="pictures/D5.png" alt="D5 Image" class="info-img">
+        <p class="image-caption">Ibu</p>
+    </div>
+</div>
+</div>
+
+<div class="d-flex flex-wrap justify-content-between align-items-center mt-3">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center mt-3">
+
+        <!-- Upload Item 1 -->
+        <div class="upload-item text-center mb-3">
+            <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file1').click()">
+                <div class="camera-circle rounded-circle mx-auto">
+                    <i class="fas fa-camera text-primary fs-2"></i>
+                </div>
+                <img id="preview1" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+            </div>
+            <p class="image-caption mt-2">Welcome My Child</p>
+            <input type="file" id="file1" style="display: none;" data-preview-id="preview1" onchange="handleFileSelect(event)">
+        </div>
+        
+    
+        <!-- Upload Item 2 -->
+        <div class="upload-item text-center mb-3">
+            <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file2').click()">
+                <div class="camera-circle rounded-circle mx-auto">
+                    <i class="fas fa-camera text-primary fs-2"></i>
+                </div>
+                <img id="preview2" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+            </div>
+            <p class="image-caption mt-2">Pertama Kali Pakai Popok</p>
+            <input type="file" id="file2" style="display: none;" data-preview-id="preview2" onchange="handleFileSelect(event)">
+        </div>
+    
+        <!-- Upload Item 3 -->
+        <div class="upload-item text-center mb-3">
+            <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file3').click()">
+                <div class="camera-circle rounded-circle mx-auto">
+                    <i class="fas fa-camera text-primary fs-2"></i>
+                </div>
+                <img id="preview3" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+            </div>
+            <p class="image-caption mt-2">Pertama Kali Meng-Asi-hi</p>
+            <input type="file" id="file3" style="display: none;" data-preview-id="preview3" onchange="handleFileSelect(event)">
+        </div>
+        
+        <!-- Upload Item 4 -->
+        <div class="upload-item text-center mb-3">
+            <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file4').click()">
+                <div class="camera-circle rounded-circle mx-auto">
+                    <i class="fas fa-camera text-primary fs-2"></i>
+                </div>
+                <img id="preview4" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+            </div>
+            <p class="image-caption mt-2">Pertama Kali Mandi</p>
+            <input type="file" id="file4" style="display: none;" data-preview-id="preview4" onchange="handleFileSelect(event)">
+        </div>
+    
+        <!-- Upload Item 5 -->
+        <div class="upload-item text-center mb-3">
+            <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file5').click()">
+                <div class="camera-circle rounded-circle mx-auto">
+                    <i class="fas fa-camera text-primary fs-2"></i>
+                </div>
+                <img id="preview5" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+            </div>
+            <p class="image-caption mt-2">Mulai Aktif Menendang</p>
+            <input type="file" id="file5" style="display: none;" data-preview-id="preview5" onchange="handleFileSelect(event)">
+        </div>
+    
+        <!-- Upload Item 6 -->
+        <div class="upload-item text-center mb-3">
+            <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file6').click()">
+                <div class="camera-circle rounded-circle mx-auto">
+                    <i class="fas fa-camera text-primary fs-2"></i>
+                </div>
+                <img id="preview6" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+            </div>
+            <p class="image-caption mt-2">Gigi Mulai Tumbuh</p>
+            <input type="file" id="file6" style="display: none;" data-preview-id="preview6" onchange="handleFileSelect(event)">
+        </div>
+    
+        <!-- Upload Item 7 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file7').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview7" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Pertama Kali Sikat Gigi</p>
+    <input type="file" id="file7" style="display: none;" data-preview-id="preview7" onchange="handleFileSelect(event)">
+</div>
+    
+        <!-- Upload Item 8 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file8').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview8" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Selamat 6 Bulan Anakku</p>
+    <input type="file" id="file8" style="display: none;" data-preview-id="preview8" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 9 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file9').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview9" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Happy Baby 1st Birthday</p>
+    <input type="file" id="file9" style="display: none;" data-preview-id="preview9" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 10 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file10').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview10" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Happy Baby 2nd Birthday</p>
+    <input type="file" id="file10" style="display: none;" data-preview-id="preview10" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 11 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file11').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview11" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Happy Baby 3rd Birthday</p>
+    <input type="file" id="file11" style="display: none;" data-preview-id="preview11" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 12 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file12').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview12" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Sudah Mencoba Merangkak</p>
+    <input type="file" id="file12" style="display: none;" data-preview-id="preview12" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 13 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file13').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview13" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Gemesnya Mulai Duduk</p>
+    <input type="file" id="file13" style="display: none;" data-preview-id="preview13" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 14 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file14').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview14" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Yeeyyy Pertama Kali Makan</p>
+    <input type="file" id="file14" style="display: none;" data-preview-id="preview14" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 15 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file15').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview15" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Upsss si Kecil Mulai Berdiri</p>
+    <input type="file" id="file15" style="display: none;" data-preview-id="preview15" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 16 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file16').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview16" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Yeeeeeyyyy Bisa Berdiri Sendiri</p>
+    <input type="file" id="file16" style="display: none;" data-preview-id="preview16" onchange="handleFileSelect(event)">
+</div>
+
+       <!-- Upload Item 17 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file17').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview17" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Senyum Ceria Kalau Siang Tidak Pakai Popok</p>
+    <input type="file" id="file17" style="display: none;" data-preview-id="preview17" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 18 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file18').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview18" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Pertama Kali Foto Keluarga</p>
+    <input type="file" id="file18" style="display: none;" data-preview-id="preview18" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 19 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file19').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview19" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Benda Kesayangan Si Kecil</p>
+    <input type="file" id="file19" style="display: none;" data-preview-id="preview19" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 20 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file20').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview20" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Waktu Imunisasi</p>
+    <input type="file" id="file20" style="display: none;" data-preview-id="preview20" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 21 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file21').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview21" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Pertama Kali Memakai Sepatu</p>
+    <input type="file" id="file21" style="display: none;" data-preview-id="preview21" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 22 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file22').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview22" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Sahabat Pertama Si Kecil</p>
+    <input type="file" id="file22" style="display: none;" data-preview-id="preview22" onchange="handleFileSelect(event)">
+</div>
+
+<!-- Upload Item 23 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file23').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview23" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Senyum Ceria Si Kecil</p>
+    <input type="file" id="file23" style="display: none;" data-preview-id="preview23" onchange="handleFileSelect(event)">
+</div>
+<!-- Upload Item 24 -->
+<div class="upload-item text-center mb-3">
+    <div class="upload-area rounded-lg shadow-sm p-3 position-relative" onclick="document.getElementById('file24').click()">
+        <div class="camera-circle rounded-circle mx-auto">
+            <i class="fas fa-camera text-primary fs-2"></i>
+        </div>
+        <img id="preview24" class="hidden img-upload" src="#" alt="Preview Gambar" style="display: none;" />
+    </div>
+    <p class="image-caption mt-2">Pertama Kali Mandi</p>
+    <input type="file" id="file24" style="display: none;" data-preview-id="preview24" onchange="handleFileSelect(event)">
+</div>
+
+    <!-- Kotak Kembali Ke Atas -->
+    <div class="back-to-top-box" onclick="scrollToTop()">
+        <span class="back-to-top-text">Kembali Ke Atas</span>
+        <span class="arrow-up">↑</span>
+    </div>
+
+    <input type="file" id="file23" style="display: none;" onchange="handleFileSelect(event)">
+    <div id="option15" class="upload-options d-none">
+        <button class="btn btn-sm btn-info m-1">Kamera</button>
+        <button class="btn btn-sm btn-info m-1">Pilih Media</button>
+    </div>
+</div>
+
+
+
+<!-- Hapus Info Si Kecil -->
+<div class="delete-info-box" onclick="showDeleteConfirmation()">
+    <span class="delete-info-text">Hapus Info Si Kecil</span>
+    <span class="double-arrow">>></span>
+</div>
+
+
+<hr class="custom-line">
+<!-- Modal Konfirmasi Hapus -->
+<div id="deleteConfirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <p>Yakin ingin menghapus informasi si kecil? Semua data dan info akan hilang.</p>
+        <div class="modal-actions">
+            <button class="cancel-btn" onclick="closeModal()">Batal</button>
+            <button class="delete-btn" onclick="deleteInfo()">Hapus</button>
+        </div>
+    </div>
+</div>
+
+
+</div>
+    <!-- Bootstrap & JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+    // Flatpickr for date picker
+    flatpickr("#datePicker", {
+        dateFormat: "Y-m-d",
+        maxDate: "today"
+    });
+
+    // Gender Dropdown toggle
+    function toggleGenderDropdown() {
+        document.getElementById("genderOptions").classList.toggle("show");
+    }
+
+    function selectGender(gender) {
+        document.getElementById("genderSelect").value = gender;
+        document.getElementById("genderOptions").classList.remove("show");
+    }
+
+    // Toggle Upload Options (Camera, Media)
+    function toggleUploadOptions() {
+        const uploadOptions = document.getElementById('uploadOptions');
+        uploadOptions.style.display = uploadOptions.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function handleFileSelect(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+        const previewId = fileInput.dataset.previewId;
+
+        if (file && previewId) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const previewImage = document.getElementById(previewId);
+                const uploadArea = previewImage.closest(".upload-area");
+                const cameraCircle = uploadArea.querySelector(".camera-circle");
+
+                // Display image preview
+                previewImage.src = e.target.result;
+                previewImage.style.display = "block";
+
+                // Hide camera icon
+                if (cameraCircle) {
+                    cameraCircle.style.display = "none";
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Add event listeners for file inputs
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', handleFileSelect);
+    });
+
+    // Load previously uploaded image from localStorage
+    const uploadedImage = localStorage.getItem('uploadedImage');
+    if (uploadedImage) {
+        const uploadArea = document.querySelector('.upload-area');
+        const cameraCircle = uploadArea.querySelector('.camera-circle');
+        const uploadText = uploadArea.querySelector('.upload-text');
+
+        // Add image to upload area
+        const img = document.createElement('img');
+        img.src = uploadedImage;
+        img.style.maxWidth = '100%';
+        img.style.borderRadius = '10px';
+        uploadArea.appendChild(img);
+
+        // Hide camera icon and upload text
+        cameraCircle.style.display = 'none';
+        uploadText.style.display = 'none';
+    }
+
+    // Scroll to top of page
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Smooth scroll animation
+        });
+    }
+
+    // Show/Hide delete confirmation modal
+    function showDeleteConfirmation() {
+        document.getElementById("deleteConfirmationModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("deleteConfirmationModal").style.display = "none";
+    }
+
+    // Delete information and reset localStorage
+    function deleteInfo() {
+        localStorage.removeItem('childName');
+        localStorage.removeItem('birthDate');
+        localStorage.removeItem('uploadedImage');
+        closeModal();
+        alert("Informasi si kecil berhasil dihapus!");
+    }
+
+
+
+        // Menangani file profil yang diupload dan menampilkan gambar dalam kotak upload
+// Menangani file yang diupload dan menampilkan gambar dalam kotak upload
+function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const uploadArea = document.querySelector('.upload-area');
+        const cameraCircle = document.querySelector('.camera-circle');
+        const uploadText = document.querySelector('.upload-text');  // Ambil elemen teks "Upload Gambar"
+
+        // Buat URL untuk gambar yang diunggah
+        const imageUrl = URL.createObjectURL(file);
+
+        // Hapus ikon kamera dan tambahkan gambar
+        if (!uploadArea.querySelector('img')) {
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.classList.add('img-fluid'); // Membuat gambar responsif
+            uploadArea.appendChild(img);
+        } else {
+            const existingImg = uploadArea.querySelector('img');
+            existingImg.src = imageUrl;
+        }
+
+        // Sembunyikan ikon kamera dan teks setelah gambar diunggah
+        cameraCircle.style.display = 'none';
+        uploadText.style.display = 'none';  // Menyembunyikan teks "Upload Gambar"
+    }
+}
+
+// Fungsi untuk mendapatkan parameter dari URL
+function displayData() {
+    // Ambil data dari sessionStorage
+    const name = sessionStorage.getItem('name');
+    const dob = sessionStorage.getItem('dob'); // Pastikan ini dideklarasikan
+
+    // Debugging untuk memastikan data ada
+    console.log("Data diterima:", { name, dob });
+
+    // Tampilkan nama
+    if (name) {
+        document.getElementById('nameDisplay').textContent = name;
+    } else {
+        document.getElementById('nameDisplay').textContent = 'Nama tidak tersedia';
+    }
+
+    // Format dan tampilkan tanggal lahir
+    if (dob) {
+        const [year, month, day] = dob.split('-'); // Pecah format YYYY-MM-DD
+        const formattedDate = `${day}-${month}-${year}`; // Format menjadi DD-MM-YYYY
+        document.getElementById('dobDisplay').textContent = formattedDate;
+    } else {
+        document.getElementById('dobDisplay').textContent = 'Tanggal lahir tidak tersedia';
+    }
+}
+
+// Panggil fungsi saat halaman selesai dimuat
+window.onload = displayData;
+
+
+    </script>
+
+</script>
+
+</body>
+</html>
+

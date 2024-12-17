@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <title>Edit Data Tidur</title>
+
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .container {
+        margin-top: 50px;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .btn-primary {
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container py-4">
+      <!-- Header -->
+      <div class="d-flex align-items-center mb-4">
+        <a href="catatantidur.html" class="text-decoration-none text-dark me-2">
+          <i class="bi bi-arrow-left"></i>
+        </a>
+        <h5 class="m-0">Edit Data Tidur</h5>
+      </div>
+
+      <!-- Form Edit Data Tidur -->
+      <form id="formEdit">
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
+            <input type="date" class="form-control" id="tanggalMulai" required>
+          </div>
+          <div class="col-md-6">
+            <label for="waktuMulai" class="form-label">Waktu Mulai</label>
+            <input type="time" class="form-control" id="waktuMulai" required>
+          </div>
+          <div class="col-md-6">
+            <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
+            <input type="date" class="form-control" id="tanggalSelesai" required>
+          </div>
+          <div class="col-md-6">
+            <label for="waktuSelesai" class="form-label">Waktu Selesai</label>
+            <input type="time" class="form-control" id="waktuSelesai" required>
+          </div>
+        </div>
+
+        <!-- Durasi Otomatis -->
+        <div class="mb-3">
+          <label for="durasiOtomatis" class="form-label">Durasi Otomatis</label>
+          <input type="text" class="form-control" id="durasiOtomatis" readonly>
+        </div>
+
+        <!-- Tombol Simpan -->
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary" style="width: 75%;">Simpan</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Bootstrap JS Bundle dengan Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script Interaktif -->
+    <script>
+      // Saat halaman dimuat
+      document.addEventListener('DOMContentLoaded', () => {
+        const catatan = JSON.parse(localStorage.getItem('editCatatan')) || null;
+
+        // Isi form dengan data yang sudah ada
+        if (catatan) {
+          const [tanggalMulai, waktuMulai] = catatan.mulai.split('T');
+          const [tanggalSelesai, waktuSelesai] = catatan.selesai.split('T');
+
+          document.getElementById('tanggalMulai').value = tanggalMulai;
+          document.getElementById('waktuMulai').value = waktuMulai;
+          document.getElementById('tanggalSelesai').value = tanggalSelesai;
+          document.getElementById('waktuSelesai').value = waktuSelesai;
+          document.getElementById('durasiOtomatis').value = catatan.durasi;
+        }
+      });
+
+      // Fungsi hitung durasi
+      function hitungDurasi() {
+        const tanggalMulai = document.getElementById('tanggalMulai').value;
+        const waktuMulai = document.getElementById('waktuMulai').value;
+        const tanggalSelesai = document.getElementById('tanggalSelesai').value;
+        const waktuSelesai = document.getElementById('waktuSelesai').value;
+
+        let pesan = 'Isi semua data untuk menghitung durasi';
+
+        if (tanggalMulai && waktuMulai && tanggalSelesai && waktuSelesai) {
+          const start = new Date(`${tanggalMulai}T${waktuMulai}`);
+          const end = new Date(`${tanggalSelesai}T${waktuSelesai}`);
+
+          if (end > start) {
+            const durasiMs = end - start;
+            const durasiJam = Math.floor(durasiMs / (1000 * 60 * 60));
+            const durasiMenit = Math.floor((durasiMs % (1000 * 60 * 60)) / (1000 * 60));
+
+            pesan = `${durasiJam} jam ${durasiMenit} menit`;
+          } else {
+            pesan = 'Durasi tidak valid';
+          }
+        }
+
+        document.getElementById('durasiOtomatis').value = pesan;
+      }
+
+      // Event listener untuk perhitungan durasi
+      ['tanggalMulai', 'waktuMulai', 'tanggalSelesai', 'waktuSelesai'].forEach(id => {
+        document.getElementById(id).addEventListener('input', hitungDurasi);
+      });
+
+      // Simpan data yang diperbarui
+      document.getElementById('formEdit').addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const tanggalMulai = document.getElementById('tanggalMulai').value;
+        const waktuMulai = document.getElementById('waktuMulai').value;
+        const tanggalSelesai = document.getElementById('tanggalSelesai').value;
+        const waktuSelesai = document.getElementById('waktuSelesai').value;
+
+        const start = new Date(`${tanggalMulai}T${waktuMulai}`);
+        const end = new Date(`${tanggalSelesai}T${waktuSelesai}`);
+
+        if (end > start) {
+          const durasiMs = end - start;
+          const durasiJam = Math.floor(durasiMs / (1000 * 60 * 60));
+          const durasiMenit = Math.floor((durasiMs % (1000 * 60 * 60)) / (1000 * 60));
+          const durasi = `${durasiJam} jam ${durasiMenit} menit`;
+
+          const updatedCatatan = {
+            mulai: `${tanggalMulai}T${waktuMulai}`,
+            selesai: `${tanggalSelesai}T${waktuSelesai}`,
+            durasi: durasi,
+            waktu: `${waktuMulai} - ${waktuSelesai}`
+          };
+
+          const dataTidur = JSON.parse(localStorage.getItem('catatanTidur')) || [];
+          const editIndex = localStorage.getItem('editIndex');
+          dataTidur[editIndex] = updatedCatatan;
+
+          localStorage.setItem('catatanTidur', JSON.stringify(dataTidur));
+
+          // Bersihkan data sementara
+          localStorage.removeItem('editCatatan');
+          localStorage.removeItem('editIndex');
+
+          window.location.href = 'catatantidur.html';
+        } else {
+          alert('Waktu selesai harus lebih besar dari waktu mulai!');
+        }
+      });
+    </script>
+  </body>
+</html>

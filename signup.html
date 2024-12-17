@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .header-text h5 {
+      color: #432C81;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .header-text h3 {
+      color: #432C81;
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .logo {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 20px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .form-container {
+      width: 100%;
+      background-color: #f5f5f5;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: -10px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .forgot-password {
+      text-align: right;
+      font-size: 14px;
+      color: #432C81;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #432C81;
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #5843a2;
+    }
+
+    .login-link {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #432C81;
+    }
+
+    .login-link a {
+      color: #432C81;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+    .signup-link {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #432C81;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-text">
+      <h5>Hello Zenmom's</h5>
+      <h3>Sign Up</h3>
+    </div>
+    
+    <div class="logo">
+      <img src="img/logomom.png" alt="Zenmom's Logo">
+    </div>
+
+    <div class="form-container">
+      <form id="signupForm" action="Home.html">
+        <input type="text" id="username" placeholder="Username" oninput="validateUsername()">
+        <div class="error" id="usernameError" style="display: none;">Please enter your username</div>
+    
+        <input type="password" id="password" placeholder="Password">
+        <div class="forgot-password">Forgot Password?</div>
+       
+        <button type="submit">Sign Up</button>
+      </form>
+      
+    </div>
+    <div class="signup-link">
+      Do you have an account? <a href="login.html">Log In</a>
+    </div>
+    <script>
+      const usernameInput = document.getElementById("username");
+      const usernameError = document.getElementById("usernameError");
+      const signupForm = document.getElementById("signupForm");
+    
+      function validateUsername() {
+        const username = usernameInput.value.trim();
+        if (username === "") {
+          usernameError.style.display = "block";
+        } else {
+          usernameError.style.display = "none";
+        }
+      }
+    
+      signupForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Mencegah pengiriman default
+    
+        const username = usernameInput.value.trim();
+        if (username === "") {
+          usernameError.style.display = "block";
+        } else {
+          usernameError.style.display = "none";
+          // Pengalihan ke halaman tujuan setelah validasi berhasil
+          window.location.href = signupForm.action;
+        }
+      });
+    </script>
+    
+</body>
+</html>
